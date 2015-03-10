@@ -1,0 +1,2 @@
+# Linting
+pylint==1.4.1
