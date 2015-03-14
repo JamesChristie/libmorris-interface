@@ -1,9 +1,7 @@
 import pyglet
 
 from arenalib import renderer
-
-from arenalib.states.titles       import Titles
-from arenalib.states.playing_game import PlayingGame
+from arenalib import state_machinery
 
 class Client(pyglet.window.Window):
   def __init__(self):
@@ -19,16 +17,9 @@ class Client(pyglet.window.Window):
     self.current_state.on_mouse_press(x, y, button, modifiers)
   
   def update(self, time_differential):
-    self.ensure_state()
-    self.current_state.update()
+    state_machinery.ensure_state(self)
 
-  def ensure_state(self):
-    if not self.current_state or self.current_state.is_finished():
-      renderer.initialize()
-      self.apply_next_state()
-
-  def apply_next_state(self):
     if self.current_state:
-      self.current_state = PlayingGame()
+      self.current_state.update()
     else:
-      self.current_state = Titles()
+      pyglet.app.exit()

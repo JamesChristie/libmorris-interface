@@ -5,7 +5,9 @@ from arenalib import renderer
 from arenalib.factories import titles
 
 class Titles:
-  def __init__(self):
+  def __init__(self, last_state):
+    renderer.initialize()
+
     for title in titles.build_titles():
       renderer.register_entity(title)
     self.finished  = False

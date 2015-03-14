@@ -1,4 +1,4 @@
-from arenalib.label import Label
+from arenalib.entities.label import Label
 
 def build_titles():
   return [upper_title(), middle_title(), lower_title()]
