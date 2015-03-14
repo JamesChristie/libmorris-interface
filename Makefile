@@ -16,7 +16,7 @@ source:
 	$(PYTHON) setup.py sdist
 
 check:
-	find . -name \*.py | grep -v "tests/*test_*.py" | xargs pylint --errors-only --reports=n
+	find . -name \*.py | grep -v "tests/*test_*.py" | grep -v "src" | xargs pylint --errors-only --reports=n
 
 clean:
 	$(PYTHON) setup.py clean

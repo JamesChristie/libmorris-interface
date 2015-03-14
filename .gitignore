@@ -57,6 +57,7 @@ target/
 # Vim file
 *.swp
 *.swo
+*.swn
 
 # Project specific
 src

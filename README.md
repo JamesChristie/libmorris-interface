@@ -1,3 +1,3 @@
-# Lobmorris-Interface
+# T3Arena
 
 The name is placeholder while all this is WIP. I'm cowboying at the moment. Ye-haw.

@@ -1,2 +1,2 @@
 -e git://github.com/JamesChristie/libmorris.git#egg=libmorris
-pyglet==1.2.0
+pyglet==1.2.2
