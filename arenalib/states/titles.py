@@ -1,13 +1,13 @@
 import pyglet
-import arenalib
 
-from arenalib.engine import Engine
-from arenalib        import title_factory
+from arenalib import renderer
 
-class BootUp(Engine):
+from arenalib.factories import titles
+
+class Titles:
   def __init__(self):
-    super(BootUp, self).__init__()
-    self.entities += title_factory.build_titles()
+    for title in titles.build_titles():
+      renderer.register_entity(title)
     self.finished  = False
 
   def update(self):

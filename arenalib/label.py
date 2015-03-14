@@ -14,13 +14,14 @@ class Label(Entity):
       color=(0, 0, 0, 255)
     )
 
+  def draw(self, client_size):
+    self.update_position(*client_size)
+    self.pyglet_label.draw()
+
   def update_position(self, width, height):
     self.pyglet_label.x = int(self.ratio_x * width)
     self.pyglet_label.y = int(self.ratio_y * height)
     self.pyglet_label.font_size = self.get_font_size(height)
-
-  def draw(self):
-    self.pyglet_label.draw()
 
   def get_font_size(self, height):
     if self.large:
