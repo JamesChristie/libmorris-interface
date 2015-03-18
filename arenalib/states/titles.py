@@ -18,6 +18,6 @@ class Titles:
   def is_finished(self):
     return self.finished
 
-  def on_mouse_press(self, x, y, button, modifiers):
+  def on_mouse_press(self, x, y, button, client_size):
     if button == pyglet.window.mouse.LEFT:
       self.finished = True

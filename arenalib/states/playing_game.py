@@ -1,8 +1,13 @@
 from arenalib import renderer
 
+from arenalib.factories import game_board
+
+from arenalib.board_space import BoardSpace
+
 class PlayingGame:
   def __init__(self, last_state):
     renderer.initialize()
+    game_board.build_game_board()
 
     pass
     # Build/Register Board
@@ -19,5 +24,5 @@ class PlayingGame:
   def is_finished(self):
     pass
 
-  def on_mouse_press(self, x, y, button, modifiers):
-    pass
+  def on_mouse_press(self, x, y, button, client_size):
+    print(BoardSpace(x, y, client_size).get_position())

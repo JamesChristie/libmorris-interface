@@ -7,7 +7,7 @@ class AskingForRematch:
     self.finished = False
     self.quitting = False
 
-  def update(self):
+  def update(self, client_size):
     pass
 
   def is_finished(self):
