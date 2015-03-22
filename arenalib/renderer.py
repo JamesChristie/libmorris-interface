@@ -30,4 +30,5 @@ def draw(client_size):
 
   pyglet.graphics.glClear(GL_COLOR_BUFFER_BIT)
   for entity in entities:
+    pyglet.gl.glColor3f(0, 0, 0) # Default drawing color to black
     entity.draw(client_size)

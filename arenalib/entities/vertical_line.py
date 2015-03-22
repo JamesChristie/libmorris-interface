@@ -20,10 +20,10 @@ class VerticalLine(Entity):
     )
 
   def lower_x(self, width):
-    return int((width * self.ratio_x) - self.half_thickness(width) + self.distance_adjustment(width))
+    return int(self.position(width) - self.half_thickness(width) + self.intercept(width))
 
   def upper_x(self, width):
-    return int((width * self.ratio_x) + self.half_thickness(width) + self.distance_adjustment(width))
+    return int(self.position(width) + self.half_thickness(width) + self.intercept(width))
 
   def lower_y(self, height):
     return int(height * board_space.LOWER_Y)
@@ -31,8 +31,14 @@ class VerticalLine(Entity):
   def upper_y(self, height):
     return int(height * board_space.UPPER_Y)
 
+  def position(self, width):
+    return self.horizontal_space(width) * self.ratio_x
+
+  def horizontal_space(self, width):
+    return width - (width * board_space.LOWER_X) - (width * board_space.PADDING)
+
   def half_thickness(self, width):
     return width * board_space.LINE_WIDTH
 
-  def distance_adjustment(self, width):
-    return (width / board_space.INTERVAL) * board_space.LOWER_X
+  def intercept(self, width):
+    return width * board_space.LOWER_X

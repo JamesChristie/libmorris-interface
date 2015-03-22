@@ -5,8 +5,8 @@ from arenalib.entity import Entity
 from arenalib import board_space
 
 class HorizontalLine(Entity):
-  def __init__(self, ratio_x):
-    super(HorizontalLine, self).__init__(ratio_x, None)
+  def __init__(self, ratio_y):
+    super(HorizontalLine, self).__init__(None, ratio_y)
 
   def draw(self, client_size):
     pyglet.graphics.draw_indexed(
@@ -26,13 +26,19 @@ class HorizontalLine(Entity):
     return int(width * board_space.UPPER_X)
 
   def lower_y(self, height):
-    return int((height * self.ratio_x) - self.half_thickness(height) + self.distance_adjustment(height))
+    return int(self.position(height) - self.half_thickness(height) + self.intercept(height))
 
   def upper_y(self, height):
-    return int((height * self.ratio_x) + self.half_thickness(height) + self.distance_adjustment(height))
+    return int(self.position(height) + self.half_thickness(height) + self.intercept(height))
+
+  def position(self, height):
+    return self.vertical_space(height) * self.ratio_y
+
+  def vertical_space(self, height):
+    return height - (height * board_space.LOWER_Y) - (height * board_space.PADDING)
 
   def half_thickness(self, height):
     return height * board_space.LINE_WIDTH
 
-  def distance_adjustment(self, height):
-    return (height / board_space.INTERVAL) * board_space.LOWER_Y
+  def intercept(self, height):
+    return height * board_space.LOWER_Y
