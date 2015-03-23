@@ -11,6 +11,9 @@ class Client(pyglet.window.Window):
     self.current_state = None
 
   def on_draw(self):
+    if self.current_state:
+      self.current_state.on_draw()
+
     renderer.draw(self.get_size())
 
   def on_mouse_press(self, x, y, button, modifiers):

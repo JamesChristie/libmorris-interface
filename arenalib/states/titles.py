@@ -15,6 +15,9 @@ class Titles:
   def update(self):
     pass
 
+  def on_draw(self):
+    pass
+
   def is_finished(self):
     return self.finished
 

@@ -1,8 +1,7 @@
 import pyglet
 
-from pyglet.graphics import GL_COLOR_BUFFER_BIT
-
 entities = []
+pieces   = []
 
 clock_display = pyglet.clock.ClockDisplay()
 
@@ -19,16 +18,23 @@ def register_entity(entity):
 
   entities.append(entity)
 
-def get_draw_list():
-  global entities
-  global clock_display
+def set_pieces(piece_list):
+  global pieces
 
-  return entities + [clock_display]
+  pieces = piece_list
 
 def draw(client_size):
   global entities
+  global pieces
+  global clock_display
 
-  pyglet.graphics.glClear(GL_COLOR_BUFFER_BIT)
+  pyglet.graphics.glClear(pyglet.graphics.GL_COLOR_BUFFER_BIT)
+
+  pyglet.gl.glColor3f(0, 0, 0) # Default drawing color to black
   for entity in entities:
-    pyglet.gl.glColor3f(0, 0, 0) # Default drawing color to black
     entity.draw(client_size)
+
+  for piece in pieces:
+    piece.draw(client_size)
+
+  clock_display.draw()

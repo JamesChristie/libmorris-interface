@@ -1,38 +1,30 @@
 from arenalib import renderer
 
-from arenalib.factories import game_board
-
+from arenalib.factories   import game_board
 from arenalib.board_space import BoardSpace
 
-from arenalib.entities.o import O
+from arenalib.game_manager   import GameManager
+from arenalib.game_presenter import GamePresenter
 
 class PlayingGame:
   def __init__(self, last_state):
     renderer.initialize()
     game_board.build_game_board()
-
-    pass
-    # Build/Register Board
     # Build/Register/Store HUD
-    # Initialize Storage for played pieces
-    # Register game with libmorris
+
+    self.game_manager   = GameManager()
+    self.game_presenter = GamePresenter(self.game_manager)
+
+  def on_draw(self):
+    self.game_presenter.place_pieces()
 
   def update(self):
-    pass
-    # update current reporter
-    # if player move, pass
-    # if computer's move, spawn move thread
+    self.game_manager.update()
 
   def is_finished(self):
-    pass
+    return self.game_manager.is_over()
 
   def on_mouse_press(self, x, y, button, client_size):
-    position = BoardSpace(x, y, client_size).get_position()
-    print(position)
-
-    if position:
-      x = O(position)
-      print("Registering O at %d, %d" % (x.x_position(client_size[0]), x.y_position(client_size[1])))
-      print("With lower coordinates at %d, %d" % (x.lower_x(client_size[0]), x.lower_y(client_size[1])))
-      print("And upper coordinates at %d, %d" % (x.upper_x(client_size[0]), x.upper_y(client_size[1])))
-      renderer.register_entity(O(position))
+    self.game_manager.advance_game(
+      position = BoardSpace(x, y, client_size).get_position()
+    )
