@@ -1,4 +1,5 @@
 import pyglet
+import libmorris
 
 from arenalib import renderer
 
@@ -12,6 +13,11 @@ class AskingForRematch:
     self.game_manager = last_state.game_manager
     self.finished     = False
     self.quitting     = False
+
+    # NOTE (JamesChristie) Clean up after ourselves at the
+    # first opportunity to prevent memory leaks in the
+    # singleton storage
+    libmorris.destroy_game(self.game_manager.game_id)
 
   def update(self):
     pass
