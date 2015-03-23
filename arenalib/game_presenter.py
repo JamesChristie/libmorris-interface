@@ -45,7 +45,7 @@ class GamePresenter:
       return Label(0.6, 0.1, "No one is playing...")
 
   def get_turns_message(self):
-    return Label(0.1, 0.9, "Turns: %d" % 1)
+    return Label(0.1, 0.9, "Turns: %d" % self.game_manager.played_moves())
 
   def get_current_label(self):
     return Label(0.1, 0.4, "Current:")

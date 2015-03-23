@@ -24,6 +24,7 @@ class AskingForRematch:
 
   def on_draw(self):
     renderer.set_hud([
+      Label(0.1, 0.9, "Turns: %d" % self.game_manager.played_moves()),
       Label(0.1, 0.5, "Winner:"),
       Label(0.1, 0.4, self.get_winner_name()),
       Label(0.6, 0.1, "The game has ended, play again? (y/n)")

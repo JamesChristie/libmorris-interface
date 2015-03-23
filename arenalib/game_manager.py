@@ -33,6 +33,9 @@ class GameManager:
     return not self.is_over() and \
       self.reporter.current_player() == COMPUTER_PLAYER
 
+  def played_moves(self):
+    return self.reporter.played_moves()
+
   def get_current_board(self):
     return self.reporter.get_current_board()
 
