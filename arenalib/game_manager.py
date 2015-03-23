@@ -30,6 +30,12 @@ class GameManager:
     return not self.is_over() and \
       self.reporter.current_player() == COMPUTER_PLAYER
 
+  def get_current_board(self):
+    return self.reporter.get_current_board()
+
+  def get_current_player(self):
+    return self.reporter.current_player()
+
   def update(self):
     self.update_reporter()
     if self.is_action_done(): self.finish_action()

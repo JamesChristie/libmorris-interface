@@ -1,7 +1,8 @@
 from arenalib import renderer
 
-from arenalib.entities.x import X
-from arenalib.entities.o import O
+from arenalib.entities.x     import X
+from arenalib.entities.o     import O
+from arenalib.entities.label import Label
 
 from arenalib.game_manager import HUMAN_PLAYER
 from arenalib.game_manager import COMPUTER_PLAYER
@@ -13,11 +14,16 @@ class GamePresenter:
   def place_pieces(self):
     renderer.set_pieces(self.board_as_pieces())
 
-  def get_current_board(self):
-    return self.game_manager.reporter.get_current_board()
+  def set_hud(self):
+    renderer.set_hud([
+      self.get_bottom_message(),
+      self.get_turns_message(),
+      self.get_current_label(),
+      self.get_player_label()
+    ])
 
   def board_as_pieces(self):
-    current_board = self.get_current_board()
+    current_board = self.game_manager.get_current_board()
 
     return [
       self.piece_for(position, current_board[position])
@@ -29,3 +35,21 @@ class GamePresenter:
       return X(position)
     elif player == COMPUTER_PLAYER:
       return O(position)
+
+  def get_bottom_message(self):
+    if self.game_manager.get_current_player() == HUMAN_PLAYER:
+      return Label(0.6, 0.1, "Click a space to move")
+    elif self.game_manager.get_current_player() == COMPUTER_PLAYER:
+      return Label(0.6, 0.1, "The computer is thinking...")
+
+  def get_turns_message(self):
+    return Label(0.1, 0.9, "Turns: %d" % 1)
+
+  def get_current_label(self):
+    return Label(0.1, 0.4, "Current:")
+
+  def get_player_label(self):
+    if self.game_manager.get_current_player() == HUMAN_PLAYER:
+      return Label(0.1, 0.3, "Player")
+    elif self.game_manager.get_current_player() == COMPUTER_PLAYER:
+      return Label(0.1, 0.3, "Computer")

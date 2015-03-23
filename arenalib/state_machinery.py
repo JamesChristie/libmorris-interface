@@ -23,6 +23,10 @@ class StateMachinery:
     if self.should_quit():
       return None
     elif self.should_advance():
+      # NOTE (JamesChristie) Ensure the visuals are up to
+      # date before removing the logic that produces them
+      if self.current_state:
+        self.current_state.on_draw()
       return self.build_next_state()
     else:
       return self.current_state

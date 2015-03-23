@@ -10,13 +10,13 @@ class PlayingGame:
   def __init__(self, last_state):
     renderer.initialize()
     game_board.build_game_board()
-    # Build/Register/Store HUD
 
     self.game_manager   = GameManager()
     self.game_presenter = GamePresenter(self.game_manager)
 
   def on_draw(self):
     self.game_presenter.place_pieces()
+    self.game_presenter.set_hud()
 
   def update(self):
     self.game_manager.update()
@@ -25,6 +25,7 @@ class PlayingGame:
     return self.game_manager.is_over()
 
   def on_mouse_press(self, x, y, button, client_size):
-    self.game_manager.advance_game(
-      position = BoardSpace(x, y, client_size).get_position()
-    )
+    if self.game_manager.is_human_move():
+      self.game_manager.advance_game(
+        position = BoardSpace(x, y, client_size).get_position()
+      )

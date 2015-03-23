@@ -2,6 +2,7 @@ import pyglet
 
 entities = []
 pieces   = []
+hud      = []
 
 clock_display = pyglet.clock.ClockDisplay()
 
@@ -18,6 +19,11 @@ def register_entity(entity):
 
   entities.append(entity)
 
+def set_hud(hud_element_list):
+  global hud
+
+  hud = hud_element_list
+
 def set_pieces(piece_list):
   global pieces
 
@@ -25,6 +31,7 @@ def set_pieces(piece_list):
 
 def draw(client_size):
   global entities
+  global hud
   global pieces
   global clock_display
 
@@ -33,6 +40,9 @@ def draw(client_size):
   pyglet.gl.glColor3f(0, 0, 0) # Default drawing color to black
   for entity in entities:
     entity.draw(client_size)
+
+  for element in hud:
+    element.draw(client_size)
 
   for piece in pieces:
     piece.draw(client_size)
