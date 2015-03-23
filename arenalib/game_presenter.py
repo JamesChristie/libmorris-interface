@@ -41,6 +41,8 @@ class GamePresenter:
       return Label(0.6, 0.1, "Click a space to move")
     elif self.game_manager.get_current_player() == COMPUTER_PLAYER:
       return Label(0.6, 0.1, "The computer is thinking...")
+    else:
+      return Label(0.6, 0.1, "No one is playing...")
 
   def get_turns_message(self):
     return Label(0.1, 0.9, "Turns: %d" % 1)
@@ -53,3 +55,5 @@ class GamePresenter:
       return Label(0.1, 0.3, "Player")
     elif self.game_manager.get_current_player() == COMPUTER_PLAYER:
       return Label(0.1, 0.3, "Computer")
+    else:
+      return Label(0.1, 0.3, "Nobody")

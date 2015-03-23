@@ -24,3 +24,6 @@ class Titles:
   def on_mouse_press(self, x, y, button, client_size):
     if button == pyglet.window.mouse.LEFT:
       self.finished = True
+
+  def on_key_press(self, symbol, modifiers):
+    pass

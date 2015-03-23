@@ -16,6 +16,9 @@ class GameManager:
   def update_reporter(self):
     self.reporter = libmorris.get_game(self.game_id)
 
+  def get_winner(self):
+    return self.reporter.winner()
+
   def is_over(self):
     return self.reporter.is_over()
 

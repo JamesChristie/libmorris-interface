@@ -29,3 +29,6 @@ class PlayingGame:
       self.game_manager.advance_game(
         position = BoardSpace(x, y, client_size).get_position()
       )
+
+  def on_key_press(self, symbol, modifiers):
+    pass
