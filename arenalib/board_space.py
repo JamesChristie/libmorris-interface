@@ -10,6 +10,8 @@ LINE_WIDTH = 0.01
 
 INTERVAL = 3
 
+PIECE_SPAN = 0.2
+
 class BoardSpace:
   def __init__(self, x, y, client_size):
     self.x      = x
